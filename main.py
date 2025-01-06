@@ -7,6 +7,9 @@ parser.add_argument("-r", "--raw", action="store_true",
                     help="print raw data instead of calculation result")
 parser.add_argument("-t", "--time", type=int, default=30,
                     help="duration in seconds to read from sensor, default 30")
+## add an argument -g to plot the ir and the red values
+#parser.add_argument("-s", "--save", action="save_data",
+#					help="save the plot as a png file")
 args = parser.parse_args()
 
 print('sensor starting...')

@@ -26,6 +26,12 @@ class HeartRateMonitor(object):
         red_data = []
         bpms = []
 
+		# create a csv file to save the data
+        csv_file = open('data.csv', 'w')
+        csv_file.write('IR, Red\n')
+        csv_file.close()
+        
+
         # run until told to stop
         while not self._thread.stopped:
             # check if any data is available
@@ -34,6 +40,12 @@ class HeartRateMonitor(object):
                 # grab all the data and stash it into arrays
                 while num_bytes > 0:
                     red, ir = sensor.read_fifo()
+
+                    # write the data to the csv file
+                    csv_file = open('data.csv', 'a')
+                    csv_file.write(str(ir) + ',' + str(red) + '\n')
+                    csv_file.close()
+                    
                     num_bytes -= 1
                     ir_data.append(ir)
                     red_data.append(red)
